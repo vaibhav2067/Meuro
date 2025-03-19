@@ -180,6 +180,11 @@
             }
             showToast('Joining room...');
         });
+        document.querySelectorAll('input[name="privacy"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                document.getElementById('roomPassword').classList.toggle('hidden', e.target.value !== 'private');
+            });
+        });
     </script>
 </body>
 </html>
