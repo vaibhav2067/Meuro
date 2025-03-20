@@ -153,3 +153,8 @@ canvas {
   border-radius: 50%;
 }
 
+#voiceIndicator {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
