@@ -1,19 +1,29 @@
+const params = new URLSearchParams(window.location.search);
+const roomId = params.get("room");
+
+if (!roomId) {
+  alert("No room ID found! Redirecting...");
+  window.location.href = "vr.html";
+}
+
 import * as THREE from "three";
 import { GLTFLoader } from "GLTFLoader";
 import { OrbitControls } from "OrbitControls";
 import { db, ref, set, onValue, onDisconnect, push, remove, get} from "./firebaseConfig.js";
 import { CSS2DRenderer} from "CSS2DRenderer";
 import { AxesHelper } from "three";
+
+
 // Firebase Refs
-const cameraRef = ref(db, "camera");
-const modelRef = ref(db, "model");
-const usersRef = ref(db, "users");
-const messagesRef = ref(db, "messages");
-const lightsRef = ref(db, "lights");
+const cameraRef = ref(db, `rooms/${roomId}/camera`);
+const modelRef = ref(db, `rooms/${roomId}/model`);
+const usersRef = ref(db, `rooms/${roomId}/users`);
+const messagesRef = ref(db, `rooms/${roomId}/messages`);
+const lightsRef = ref(db, `rooms/${roomId}/lights`);
 
 // Generate a unique ID for the user
 const userId = push(usersRef).key;
-const userRef = ref(db, `users/${userId}`);
+const userRef = ref(db, `rooms/${roomId}/users/${userId}`);
 const username = `User-${Math.floor(Math.random() * 1000)}`;
 // Set user data in Firebase
 set(userRef, { name: username, active: true });
@@ -340,27 +350,37 @@ onValue(messagesRef, (snapshot) => {
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let mediaRecorder;
 let audioChunks = [];
+let recording = false; // Prevent duplicate event triggers
+const voiceIndicator = document.getElementById("voiceIndicator");
 
 // Reference for storing voice messages
 const audioRef = ref(db, "voiceMessages");
 
 // Function to start recording
 async function startRecording() {
+  if (recording) return; // Prevent duplicate calls
+  recording = true;
+
   try {
+    await remove(audioRef);
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.start();
+    voiceIndicator.style.display = "block";
 
     mediaRecorder.ondataavailable = (event) => {
       audioChunks.push(event.data);
     };
 
     mediaRecorder.onstop = async () => {
+      voiceIndicator.style.display = "none";
+      recording = false; // Reset the flag
+
       const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
       const reader = new FileReader();
 
       reader.onloadend = function () {
-        const base64Audio = reader.result.split(",")[1]; // Get base64 data
+        const base64Audio = reader.result.split(",")[1];
         const newAudioRef = push(audioRef);
         set(newAudioRef, { username, audio: base64Audio });
       };
@@ -370,28 +390,33 @@ async function startRecording() {
     };
   } catch (error) {
     console.error("Error accessing microphone:", error);
+    recording = false; // Reset the flag if an error occurs
   }
 }
 
 // Function to stop recording
 function stopRecording() {
-  if (mediaRecorder) {
+  if (mediaRecorder && mediaRecorder.state !== "inactive") {
     mediaRecorder.stop();
+    recording = false;
   }
 }
 
 // Add event listeners for Push-to-Talk (Spacebar)
 document.addEventListener("keydown", (event) => {
-  if (event.key === " " && !mediaRecorder) {
+  if (event.key === " " && !recording && document.activeElement !== document.getElementById("chatInput")) {
+    event.preventDefault(); // Prevent scrolling
     startRecording();
   }
 });
 
 document.addEventListener("keyup", (event) => {
-  if (event.key === " " && mediaRecorder) {
+  if (event.key === " " && recording) {
+    event.preventDefault(); // Prevent scrolling
     stopRecording();
   }
 });
+
 
 // Function to play received voice messages
 onValue(audioRef, (snapshot) => {
