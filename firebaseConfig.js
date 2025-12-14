@@ -5,7 +5,7 @@ import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/1
 
 // Paste your Firebase config here
 const firebaseConfig = {
-    apiKey: "AIzaSyBTkNTqqfnHyZEYrdTxtnC_mRMYDG50w48",
+    apiKey: "eNTER yOUR api key",
     authDomain: "YOUR_AUTH_DOMAIN",
     databaseURL: "https://meuro-16819-default-rtdb.firebaseio.com/",
     projectId: "meuro-16819",
