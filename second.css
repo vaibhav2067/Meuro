@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #000000;
+}
+.header {
+  background: #4f46e5;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  margin: 1rem 1rem 0rem 1rem;
+  padding: 1rem;
+  border-radius: 12rem;
+}
+.container {
+  display: flex;
+  flex: 1;
+}
+.viewer {
+  position: relative;
+  margin: 1rem;
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dotted #949494;
+  border-radius: 12px;
+  background: #000000;
+}
+
+h3{
+  color: #ffffff;
+  padding: 1rem 0rem;
+}
+
+.chat {
+    margin: .5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.highlight {
+  border-color: #00ff00;
+  background: rgba(0, 255, 0, 0.1);
+}
+
+#dropText{
+  z-index: 2;
+  color: rgb(255, 255, 255);
+}
+
+canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.Presence{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.532);
+}
+
+.messages {
+  flex: 3;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.input-area {
+  display: flex;
+  gap: 5px;
+  height: 38px;
+}
+.input-area input {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+.input-area button {
+  padding: 10px 20px;
+  background: #554cf7;
+  display: flex;
+  align-items: center;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.message {
+  padding: 5px;
+  margin-bottom: 5px;
+  background: #eef;
+  border-radius: 5px;
+}
+
+.pattern-1{
+  width: 20px;
+}
+
+#gizmoContainer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* Prevent interference */
+  z-index: 2;
+}
+
+/* Axes */
+.gizmo-axis {
+  position: absolute;
+  width: 50px;
+  height: 4px;
+  border-radius: 2px;
+  transition: transform 0.1s;
+}
+
+.x-axis { background: red; }
+.y-axis { background: green; }
+.z-axis { background: blue; width: 4px; height: 50px; }
+
+/* Circular Ring */
+.gizmo-circle {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+
+#voiceIndicator {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}

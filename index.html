@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meuro - 3D Collaboration Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#6366F1'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-['Inter']">
+    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <nav class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <a href="/" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary">Features</a>
+                    <a href="#solutions" class="text-gray-600 hover:text-primary">Solutions</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-primary">Pricing</a>
+                    <a href="#resources" class="text-gray-600 hover:text-primary">Resources</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="signInBtn" class="text-gray-700 hover:text-primary px-4 py-2 !rounded-button cursor-pointer whitespace-nowrap">Sign in</button>
+                <button id="signUpBtn" class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-primary/90 cursor-pointer whitespace-nowrap">Sign up free</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-16">
+        <section class="relative min-h-[85vh] flex items-center" style="background-image: url('https://public.readdy.ai/ai/img_res/52f66ffb7bdcf0858f999198512a47f9.jpg'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-gradient-to-r from-white/95 to-white/30"></div>
+            <div class="relative max-w-7xl mx-auto px-4 py-24">
+                <div class="max-w-2xl">
+                    <h1 class="text-6xl font-bold leading-tight mb-6">Transform Your 3D Collaboration Experience</h1>
+                    <p class="text-xl text-gray-600 mb-8">Experience seamless real-time 3D collaboration with your team. Design, review, and iterate together in an immersive virtual workspace.</p>
+                    <div class="flex gap-4">
+                        <button id="createRoomBtn" class="bg-primary text-white px-8 py-4 !rounded-button text-lg hover:bg-primary/90 cursor-pointer whitespace-nowrap">Create Room</button>
+                        <button id="joinRoomBtn" class="border-2 border-primary text-primary px-8 py-4 !rounded-button text-lg hover:bg-primary/5 cursor-pointer whitespace-nowrap">Join Room</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">Why Choose Meuro</h2>
+                    <p class="text-xl text-gray-600">Everything you need for seamless 3D collaboration</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                            <i class="ri-3d-cube-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Real-time 3D Interaction</h3>
+                        <p class="text-gray-600">Manipulate 3D objects in real-time with your team. Rotate, scale, and transform with precision and ease.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                            <i class="ri-team-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Collaborative Workspace</h3>
+                        <p class="text-gray-600">Work together in shared virtual spaces. See changes instantly and coordinate effectively with your team members.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                            <i class="ri-message-3-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Integrated Communication</h3>
+                        <p class="text-gray-600">Built-in chat and annotation tools keep conversations contextual and productive within your 3D workspace.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">Trusted by Industry Leaders</h2>
+                    <p class="text-xl text-gray-600">Join thousands of companies already collaborating in 3D</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center opacity-60">
+                    <img src="https://public.readdy.ai/ai/img_res/f0dd336b7242a5794600b4f04765598f.jpg" alt="Company logo" class="h-12 object-contain">
+                    <img src="https://public.readdy.ai/ai/img_res/30d5a2c3e2d5de55cc129e80d849805b.jpg" alt="Company logo" class="h-12 object-contain">
+                    <img src="https://public.readdy.ai/ai/img_res/ab11e8ffb5cda8733cae8eaf020c4d24.jpg" alt="Company logo" class="h-12 object-contain">
+                    <img src="https://public.readdy.ai/ai/img_res/0756daa3bf321047975779a557253024.jpg" alt="Company logo" class="h-12 object-contain">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">Start Collaborating Today</h2>
+                    <p class="text-xl text-gray-600">Get started with our free plan or choose a solution that fits your needs</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-semibold mb-4">Free</h3>
+                        <p class="text-4xl font-bold mb-8">$0<span class="text-lg text-gray-500">/month</span></p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>Up to 3 team members</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>Basic 3D collaboration</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>1GB storage</span>
+                            </li>
+                        </ul>
+                        <button class="w-full bg-primary text-white py-3 !rounded-button hover:bg-primary/90 cursor-pointer whitespace-nowrap">Get Started</button>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-primary relative">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm">Most Popular</div>
+                        <h3 class="text-2xl font-semibold mb-4">Pro</h3>
+                        <p class="text-4xl font-bold mb-8">$29<span class="text-lg text-gray-500">/month</span></p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>Up to 10 team members</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>Advanced 3D tools</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>10GB storage</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        <button class="w-full bg-primary text-white py-3 !rounded-button hover:bg-primary/90 cursor-pointer whitespace-nowrap">Start Free Trial</button>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-semibold mb-4">Enterprise</h3>
+                        <p class="text-4xl font-bold mb-8">Custom</p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>Unlimited team members</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>Custom integrations</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>Unlimited storage</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span>24/7 dedicated support</span>
+                            </li>
+                        </ul>
+                        <button class="w-full border-2 border-primary text-primary py-3 !rounded-button hover:bg-primary/5 cursor-pointer whitespace-nowrap">Contact Sales</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <a href="/" class="text-2xl font-['Pacifico'] text-white mb-4 block">logo</a>
+                    <p class="text-gray-400">Transform your team's collaboration with our innovative 3D workspace platform.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Enterprise</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tutorials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400">© 2025 Meuro. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-gray-400 hover:text-white w-8 h-8 flex items-center justify-center">
+                        <i class="ri-twitter-x-line"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white w-8 h-8 flex items-center justify-center">
+                        <i class="ri-linkedin-line"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white w-8 h-8 flex items-center justify-center">
+                        <i class="ri-github-line"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white w-8 h-8 flex items-center justify-center">
+                        <i class="ri-youtube-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
